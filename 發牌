@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <ctime>
+using namespace std;
+
+struct Card {
+    string suit;
+    string value;
+};
+
+void initializeDeck(vector<Card>& deck);
+void shuffleDeck(vector<Card>& deck);
+void dealCards(const vector<Card>& deck, vector<vector<Card>>& hands);
+
+int main() {
+   
+    vector<Card> deck;
+    initializeDeck(deck);
+    shuffleDeck(deck);
+    vector<vector<Card>> hands(4);
+    dealCards(deck, hands);
+    for (int i = 0; i < 4; ++i) {
+        cout << "Player " << i + 1 << "'s hand:" << endl;
+        for (const auto& card : hands[i]) {
+            cout << card.value << " of " << card.suit << endl;
+        }
+       cout << endl;
+    }
+
+    return 0;
+}
+
+void initializeDeck(vector<Card>& deck) {
+    static const string suits[] = { "Hearts", "Diamonds", "Clubs", "Spades" };
+    static const string values[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+
+    for (const auto& suit : suits) {
+        for (const auto& value : values) {
+            deck.push_back({ suit, value });
+        }
+    }
+}
+
+void shuffleDeck(vector<Card>& deck) {
+   srand(static_cast<unsigned int>(time(nullptr)));
+    random_shuffle(deck.begin(), deck.end());
+}
+
+void dealCards(const vector<Card>& deck, vector<vector<Card>>& hands) {
+    int player = 0;
+    for (const auto& card : deck) {
+        hands[player].push_back(card);
+        player = (player + 1) % 4;
+    }
+}
