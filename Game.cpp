@@ -5,7 +5,7 @@ using namespace std;
 Game::Game() : deck(), player(), dealer() {}
 
 void Game::play() {
-    cout << "21點遊戲開始!" << endl;
+    cout << "Welcome to 21point!" << endl;
 
     // Initial draw
     player.drawCard(deck);
@@ -13,22 +13,22 @@ void Game::play() {
     player.drawCard(deck);
     dealer.drawCard(deck);
 
-    cout << "玩家手牌: ";
+    cout << "Your hand: ";
     player.showHand();
-    cout << "電腦手牌: ";
+    cout << "Computer's hand: ";
     dealer.showHand();
 
     char choice;
     while (true) {
-        cout << "叫牌還是停牌(h/s) ";
+        cout << "Do you want to hit or stand? (h/s): ";
         cin >> choice;
         if (choice == 'h') {
             player.drawCard(deck);
-            cout << "玩家手牌: ";
+            cout << "Your hand: ";
             player.showHand();
 
             if (player.getHandValue() > 21) {
-                cout << "玩家手牌爆了!電腦贏" << endl;
+                cout << "You busted! Computer wins." << endl;
                 return;
             }
         }
@@ -45,7 +45,7 @@ void Game::play() {
         dealer.drawCard(deck);
     }
 
-    cout << "電腦手牌: ";
+    cout << "Computer hand: ";
     dealer.showHand();
 
     // Determine winner
@@ -53,12 +53,12 @@ void Game::play() {
     int dealerValue = dealer.getHandValue();
 
     if (dealerValue > 21 || playerValue > dealerValue) {
-        cout << "玩家贏!" << endl;
+        cout << "You win!" << endl;
     }
     else if (playerValue == dealerValue) {
-        cout << "平手!" << endl;
+        cout << " tie!" << endl;
     }
     else {
-        cout << "電腦贏." << endl;
+        cout << "Computer wins." << endl;
     }
 }
