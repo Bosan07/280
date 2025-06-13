@@ -36,6 +36,9 @@
 莊家明牌是 10，暗牌是 6（總值 16），所以莊家再抽一張牌，抽到 9（總值 25，爆掉）。
 結果:
 玩家勝利，因為莊家爆掉
+程式畫面截圖:
+![image](https://github.com/user-attachments/assets/076c7288-fade-4979-8755-4fde8edd1185)
+
 程式如何安裝執行：
 * 在github的Download分支點開Code
 * 點擊Download ZIP進行下載
